@@ -3,6 +3,7 @@ import App from "../App";
 import ErrorPage from "../error-page";
 import PrivateLayout from "../layout/PrivateLayout";
 import Declarations from "../pages/Declarations";
+import Home from "../pages/Home";
 
 const router = createBrowserRouter([
   {
@@ -10,6 +11,10 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
+      {
+        index: true,
+        element: <Home />
+      },
       {
         path: "private",
         element: <PrivateLayout />,
