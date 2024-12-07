@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom"
-import { NAV_LINKS } from "../../utils/Data"
-
+import { Link } from "react-router-dom";
+import { NAV_LINKS } from "../../utils";
 function Nav() {
     return (
         <nav className="z-10 bg-white shadow-md w-56 fixed flex flex-col justify-between top-0 left-0 bottom-0">
