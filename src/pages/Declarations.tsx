@@ -1,4 +1,4 @@
-import { DECLARATIONS, formatDate } from "../utils"
+import { DECLARATIONS, formatDate, getStatusColor, getStatusLabel } from "../utils"
 
 function Declarations() {
     return (
@@ -8,9 +8,9 @@ function Declarations() {
                 <span className={`p-2 col-span-2`}>Enfant</span>
                 <span className={`p-2 `}>Date Naiss</span>
                 <span className={`p-2 `}>Hopital</span>
-                <span className={`p-2 col-span-2`}>Parent 1</span>
+                <span className={`p-2 col-span-2 text-center`}>Parent 1</span>
                 <span className={`p-2 col-span-2`}>Parent 2</span>
-                <span className={`p-2`}>Status</span>
+                <span className={`p-2 text-center`}>Status</span>
                 <span className={`p-2 col-span-2`}>ACTIONS</span>
             </article>
             {DECLARATIONS.map((item, index) => (
@@ -24,7 +24,7 @@ function Declarations() {
                     <span className={`p-2 `}>
                         <span>{item.company.name}</span>
                     </span>
-                    <span className={`p-2 col-span-2 flex flex-col`}>
+                    <span className={`p-2 col-span-2 flex flex-col text-center`}>
                         <span>{item.firstParent.firstName}</span>
                         <span className="uppercase">{item.firstParent.lastName}</span>
                     </span>
@@ -32,7 +32,9 @@ function Declarations() {
                         <span>{item.secondParent.firstName}</span>
                         <span className="uppercase">{item.secondParent.lastName}</span>
                     </span>
-                    <span className={`p-2`}>{item.status}</span>
+                    <span className={`p-2 text-center ${getStatusColor(item.status)}`}>
+                        {getStatusLabel(item.status)}
+                    </span>
                     <span className={`p-2 col-span-2 flex flex-col`}>ACTIONS</span>
                 </article>
             ))
