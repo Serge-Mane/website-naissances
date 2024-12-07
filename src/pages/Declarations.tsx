@@ -1,6 +1,19 @@
-import { DECLARATIONS, formatDate, getStatusColor, getStatusLabel } from "../utils"
+import { useEffect, useState } from "react";
+import { formatDate, getStatusColor, getStatusLabel } from "../utils"
 
 function Declarations() {
+    const [declarations, setDeclarations] = useState<any>([]);
+
+    const search = async () => {
+        const response = await fetch("http://localhost:8080/declarations");
+        const data = await response.json();
+        setDeclarations(data);
+
+    };
+
+    useEffect(() => {
+        search();
+    }, []);
     return (
         <div className=" bg-white shadow-md rounded-md">
             <article className="grid grid-cols-12 items-center">
@@ -13,7 +26,7 @@ function Declarations() {
                 <span className={`p-2 text-center`}>Status</span>
                 <span className={`p-2 col-span-2`}>ACTIONS</span>
             </article>
-            {DECLARATIONS.map((item, index) => (
+            {declarations.map((item: any, index: number) => (
                 <article key={item.id} className={`grid grid-cols-12 border-t border-gray-300 col-span-2 items-center ${index % 2 === 0 ? 'bg-gray-100' : null}`}>
                     <span className={`p-2`}>{formatDate(item.registered)}</span>
                     <span className={`p-2 col-span-2 flex flex-col`}>
