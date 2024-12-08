@@ -1,20 +1,9 @@
-import { useEffect, useState } from "react";
 import { formatDate, getStatusColor, getStatusLabel } from "../utils"
 import { Declaration } from "@/types/Declaration";
+import { useDeclarations } from "@/hook";
 
 function Declarations() {
-    const [declarations, setDeclarations] = useState<Declaration[]>([]);
-
-    const search = async () => {
-        const response = await fetch("http://localhost:8080/declarations");
-        const data = await response.json();
-        setDeclarations(data);
-
-    };
-
-    useEffect(() => {
-        search();
-    }, []);
+    const declarations = useDeclarations();
     return (
         <div className=" bg-white shadow-md rounded-md">
             <article className="grid grid-cols-12 items-center font-extrabold">
