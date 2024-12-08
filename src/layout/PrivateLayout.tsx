@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom"
-import Nav from "../componnents/nav/Nav";
+import Nav from "@/componnents/nav/Nav";
 
 function PrivateLayout() {
     return (

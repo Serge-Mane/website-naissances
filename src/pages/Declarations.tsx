@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { formatDate, getStatusColor, getStatusLabel } from "../utils"
-import { Declaration } from "../types/Declaration";
+import { Declaration } from "@/types/Declaration";
 
 function Declarations() {
     const [declarations, setDeclarations] = useState<Declaration[]>([]);
