@@ -14,10 +14,10 @@ function DeclarationsItems(props: Props) {
     return (
         <div>
             <article className="grid grid-cols-12 items-center font-extrabold">
-                <span className={`p-2 flex justify-between items-center`} onClick={sortByDate} >
+                <button type="button" className={`p-2 flex justify-between items-center`} onClick={sortByDate} >
                     Date
                     <BiSort />
-                </span>
+                </button>
                 <span className={`p-2 col-span-2`}>Enfant</span>
                 <span className={`p-2 `}>Date Naiss</span>
                 <span className={`p-2 `}>Hopital</span>
