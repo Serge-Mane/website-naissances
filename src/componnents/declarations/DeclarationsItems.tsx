@@ -1,7 +1,12 @@
 import { Declaration } from '@/types/Declaration'
 import DeclarationsItem from './DeclarationsItem';
 
-function DeclarationsItems(props: any) {
+
+type Props = {
+    declarations: Declaration[];
+}
+
+function DeclarationsItems(props: Props) {
     const { declarations } = props;
     return (
         <div>

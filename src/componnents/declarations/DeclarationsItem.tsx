@@ -1,8 +1,14 @@
 import ActionButton from "@/shared/ActionButton";
 import StatusBadge from "@/shared/StatusBadge";
+import { Declaration } from "@/types/Declaration";
 import { formatDate } from "@/utils";
 
-function DeclarationsItem({ declaration: item, index }: any) {
+type Props = {
+    declaration: Declaration;
+    index: number;
+}
+
+function DeclarationsItem({ declaration: item, index }: Props) {
     return (
         <article className={`grid grid-cols-12 border-t border-gray-300 col-span-2 items-center ${index % 2 === 0 ? 'bg-gray-100' : null}`}>
             <span className={`p-2`}>{formatDate(item.registered)}</span>
@@ -24,7 +30,7 @@ function DeclarationsItem({ declaration: item, index }: any) {
             </span>
 
             <StatusBadge status={item.status} />
-            <ActionButton classes="p-2 col-span-2" label="action" />
+            <ActionButton classes="p-2 col-span-2" label="action" action={() => null} />
         </article>
     );
 }
