@@ -6,9 +6,10 @@ import { formatDate } from "@/utils";
 type Props = {
     declaration: Declaration;
     index: number;
+    action: (data: { id: string, status: string }) => void;
 }
 
-function DeclarationsItem({ declaration: item, index }: Props) {
+function DeclarationsItem({ declaration: item, index, action }: Props) {
     return (
         <article className={`grid grid-cols-12 border-t border-gray-300 col-span-2 items-center ${index % 2 === 0 ? 'bg-gray-100' : null}`}>
             <span className={`p-2`}>{formatDate(item.registered)}</span>
@@ -30,8 +31,8 @@ function DeclarationsItem({ declaration: item, index }: Props) {
             </span>
 
             <StatusBadge status={item.status} />
-            <ActionButton classes="p-2 col-span-2" action={() => null} >
-                <span>actions</span>
+            <ActionButton classes="p-2 col-span-2" action={action} id={`${item.id}`}>
+
             </ActionButton>
         </article>
     );

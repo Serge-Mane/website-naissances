@@ -1,16 +1,30 @@
+import { getStatusLabel, STATUS } from "@/utils";
 import React from "react";
 
 type Props = {
+    id: string;
     classes: string;
-    children: React.ReactElement;
-    action: () => null;
+    children?: React.ReactElement;
+    action: (data: { id: string, status: string }) => void;
 }
-function ActionButton({ classes, children, action }: Props) {
+
+function ActionsButton({ id, classes, action }: Props) {
     return (
-        <button type="button" className={`p-2 text-center ${classes}`} onClick={action}>
-            {children}
-        </button>
+        <div className={`${classes}`} >
+            <select onChange={(event: any) => {
+                const status = event.target.value;
+                action({ id: id, status });
+
+            }}>
+                <option>Selectionner</option>
+                {STATUS.map((item: string) => (
+                    <option value={item}>{getStatusLabel(item)}</option>
+                )
+                )}
+            </select>
+
+        </div>
     )
 }
 
-export default ActionButton
+export default ActionsButton

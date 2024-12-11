@@ -7,10 +7,11 @@ type Props = {
     declarations: Declaration[];
     sortByStatus: () => void;
     sortByDate: () => void;
+    updateStatus: (props: any) => void;
 }
 
 function DeclarationsItems(props: Props) {
-    const { declarations, sortByStatus, sortByDate } = props;
+    const { declarations, sortByStatus, sortByDate, updateStatus } = props;
     return (
         <div>
             <article className="grid grid-cols-12 items-center font-extrabold">
@@ -30,7 +31,7 @@ function DeclarationsItems(props: Props) {
                 <span className={`p-2 col-span-2 text-center`}>ACTIONS</span>
             </article>
             {declarations.map((item: Declaration, index: number) => (
-                <DeclarationsItem declaration={item} index={index} key={item.id} />
+                <DeclarationsItem action={updateStatus} declaration={item} index={index} key={item.id} />
             ))
             }
         </div>

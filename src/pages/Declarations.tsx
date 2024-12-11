@@ -3,7 +3,7 @@ import { useDeclarations } from "@/hook";
 import { Link } from "react-router-dom";
 
 function Declarations() {
-    const { declarations, filterRef, sortByStatus, sortByDate, filteredDeclarations, filterDeclarations } = useDeclarations();
+    const { declarations, updateStatus, filterRef, sortByStatus, sortByDate, filteredDeclarations, filterDeclarations } = useDeclarations();
     return (
         <>
             <div className=" bg-white shadow-md rounded-md mb-3 flex justify-between items-center px-3 py-3">
@@ -20,6 +20,7 @@ function Declarations() {
             <div className=" bg-white shadow-md rounded-md">
                 <DeclarationsItems
                     declarations={filteredDeclarations.length ? filteredDeclarations : declarations}
+                    updateStatus={updateStatus}
                     sortByStatus={sortByStatus}
                     sortByDate={sortByDate}
                 />
