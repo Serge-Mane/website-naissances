@@ -4,11 +4,11 @@ import { Declaration } from "@/types/Declaration";
 import { useContext, useEffect, useRef, useState } from "react";
 
 function useDeclarations() {
-    const { state, updateDeclaration } = useContext(ApplicationContext)
+    const { state, updateDeclaration, updateDeclarationStatus } = useContext(ApplicationContext)
     const filterRef = useRef<any>();
     const [statusOrder, setstatusOrder] = useState(1);
     const [dateOrder, setDateOrder] = useState(1);
-    const [declarations, setDeclarations] = useState<Declaration[]>([]);
+    const [declarations, setDeclarations] = useState<Declaration[]>(state.declarations);
     const [filteredDeclarations, setFilteredDeclarations] = useState<Declaration[]>([]);
 
     /*
@@ -19,13 +19,15 @@ function useDeclarations() {
     en tout on recupere les donnees a modifier et celles qu'on ne doit pas modiffier et je met a jour mon tableau avec 
     les donnees mise a jour de notre element
     */
-    const updateStatus = (data: { id: string, status: string }) => {
+    const updateStatusWithoutContext = (data: { id: string, status: string }) => {
         const toUpdate = declarations.filter(({ id }: Declaration) => id === data.id)[0];
         const updated = { ...toUpdate, status: data.status };
 
         const toKeep = declarations.filter(({ id }: Declaration) => id !== data.id);
         setDeclarations([...toKeep, updated]);
-    }
+    };
+
+    const updateStatus = (data: { id: string, status: string }) => updateDeclarationStatus(data);
 
     const sortByStatus = () => {
         const sortedDeclarations = declarations.sort((itemOne: Declaration, itemTwo: Declaration) => {

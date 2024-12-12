@@ -1,3 +1,4 @@
+
 const NAV_LINKS = [
     {
         to: '/private/declarations',
@@ -17,4 +18,8 @@ const NAV_LINKS = [
     }
 ];
 
-export { NAV_LINKS }
+const UPDATE_DECLARARTIONS = "UPDATE_DECLARARTIONS";
+const UPDATE_DECLARARTIONS_STATUS = "UPDATE_DECLARARTIONS_STATUS";
+
+const INITIAL_STATE = { declarations: [] }
+export { INITIAL_STATE, NAV_LINKS, UPDATE_DECLARARTIONS, UPDATE_DECLARARTIONS_STATUS }
