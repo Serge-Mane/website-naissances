@@ -1,10 +1,15 @@
+import { Outlet } from "react-router-dom";
+import ApplicationContextProvider from "./contexte/ApplicationContextProvider";
 
 function App() {
   return (
-    <main>
-      <h1 className="text-3xl font-bold underline">Gestion des naissances</h1>
-    </main>
+    <ApplicationContextProvider>
+      <main className="bg-gray-200 min-h-screen ">
+        <Outlet />
+      </main>
+    </ApplicationContextProvider>
   );
+
 }
 
 export default App
