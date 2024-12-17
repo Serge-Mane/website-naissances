@@ -19,13 +19,14 @@ function useDeclarations() {
     en tout on recupere les donnees a modifier et celles qu'on ne doit pas modiffier et je met a jour mon tableau avec 
     les donnees mise a jour de notre element
     */
-    const updateStatusWithoutContext = (data: { id: string, status: string }) => {
+
+    /*const updateStatusWithoutContext = (data: { id: string, status: string }) => {
         const toUpdate = declarations.filter(({ id }: Declaration) => id === data.id)[0];
         const updated = { ...toUpdate, status: data.status };
 
         const toKeep = declarations.filter(({ id }: Declaration) => id !== data.id);
         setDeclarations([...toKeep, updated]);
-    };
+    };*/
 
     const updateStatus = (data: { id: string, status: string }) => updateDeclarationStatus(data);
 

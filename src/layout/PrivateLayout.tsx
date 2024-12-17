@@ -2,12 +2,13 @@ import { Outlet } from "react-router-dom"
 import Nav from "@/componnents/nav/Nav";
 
 function PrivateLayout() {
+
     return (
         <section className=" min-h-screen">
             <Nav />
             <main className="wrapper pl-64 pr-10">
                 <header className="flex justify-between my-3 text-2xl font-bold">
-                    <h3>Déclarations</h3>
+                    <h3>Declarations</h3>
                     <span>SAM</span>
                 </header>
                 <Outlet />

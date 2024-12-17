@@ -9,7 +9,7 @@ const NAV_LINKS = [
         label: 'les personnes'
     },
     {
-        to: '/private/request',
+        to: '/private/demandes',
         label: 'les demandes'
     },
     {
