@@ -1,11 +1,10 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import App from "@/App";
 import ErrorPage from "@/error-page";
 import PrivateLayout from "@/layout/PrivateLayout";
 import Declarations from "@/pages/Declarations";
 import Home from "@/pages/Home";
 import DeclarationEdit from "@/pages/DeclarationEdit";
-import { action as destroyAction } from "./destroy"
 import Requests from "@/pages/requests/Requests";
 import RequestEdit from "@/pages/requests/RequestEdit";
 
@@ -25,7 +24,7 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            action: destroyAction,
+            element: <Navigate to={"/private/declarations"} />,
           },
           {
             path: "declarations",

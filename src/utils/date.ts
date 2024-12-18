@@ -7,7 +7,7 @@ const formatDay = (day: number) => {
  * c'est pour formater le date 
  */
 const formatDate = (value: string) => {
-    const date = new Date(value.split(" ")[0]);
+    const date = new Date(value.split("")[0]);
     return `${formatDay(date.getDate())} ${monthOfYears[date.getMonth()]} ${date.getFullYear()}`
 
 }
