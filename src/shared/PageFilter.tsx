@@ -8,11 +8,11 @@ type Props = {
     action?: (value: any) => void;
 };
 
-function PageFilter({ btnLabel, inputPlaceHolder, btnPath, action = () => null }: Props) {
+function PageFilter({ btnLabel, inputPlaceHolder, btnPath, action: uneaction = () => null, }: Props) {
     const filterRef = useRef<any>();
     const handleChange = () => {
         const value = filterRef.current.value;
-        action(value);
+        uneaction(value);
     }
     return (
         <>

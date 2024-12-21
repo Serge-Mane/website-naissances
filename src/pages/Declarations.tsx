@@ -3,7 +3,7 @@ import { useDeclarations } from "@/hook";
 import PageFilter from "@/shared/PageFilter";
 
 function Declarations() {
-    const { filteredDeclarations, declarations, updateStatus, filterRef, sortByStatus, sortByDate, filterDeclarations } = useDeclarations();
+    const { filteredDeclarations, declarations, updateStatus, sortByStatus, sortByDate } = useDeclarations();
     return (
         <>
             <div>
