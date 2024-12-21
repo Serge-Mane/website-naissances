@@ -8,6 +8,7 @@ import { APPLICATION_STATE, FILTER_REQUESTS, SET_REQUESTS, SET_REQUESTS_STATUS, 
 type StateProps = {
   title: string;
   requestFilter?: string;
+  token?: string;
   requests: Requests[];
   declarations: Declaration[];
 }
@@ -61,9 +62,7 @@ function GlobalApplicationcontextProvider({ children }: any) {
     /*Mise a disposition du context c-a-d comme une blise et 
     recevoir en valeur le state,la methode pour modiffier le titre*/
     <GlobalApplicationcontext.Provider value={{ state, setRequests, filterRequests, updateTitle, updateRequestStatus }}>
-      <section className="border-4 border-blue-400">
-        {children}
-      </section>
+      {children}
     </GlobalApplicationcontext.Provider>
   )
 }
