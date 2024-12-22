@@ -1,5 +1,5 @@
 import { Requests } from "@/types/Request";
-import { APPLICATION_STATE, APPLICATION_STATE_KEY, FILTER_REQUESTS, SET_REQUESTS, SET_REQUESTS_STATUS, UPDATE_TITLE } from "@/utils"
+import { APPLICATION_STATE, APPLICATION_STATE_KEY, DELETE_TOKEN, FILTER_REQUESTS, SET_REQUESTS, SET_REQUESTS_STATUS, SET_TOKEN, UPDATE_TITLE } from "@/utils"
 
 
 /**
@@ -28,6 +28,12 @@ function GlobalApplicationReducer(state: any = APPLICATION_STATE, action: any) {
             break;
         case FILTER_REQUESTS:
             state = { ...state, requestFilter: data };
+            break;
+        case SET_TOKEN:
+            state = { ...state, token: data.token };
+            break;
+        case DELETE_TOKEN:
+            state = delete state.token;
             break;
     }
     sessionStorage.setItem(APPLICATION_STATE_KEY, JSON.stringify(state));

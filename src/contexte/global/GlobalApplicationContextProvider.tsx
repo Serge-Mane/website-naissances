@@ -2,7 +2,7 @@ import { Declaration } from "@/types/Declaration";
 import { Requests } from "@/types/Request";
 import { createContext, useReducer } from "react";
 import GlobalApplicationReducer from "./GlobalApplicationReducer";
-import { APPLICATION_STATE, FILTER_REQUESTS, SET_REQUESTS, SET_REQUESTS_STATUS, UPDATE_TITLE } from "@/utils";
+import { APPLICATION_STATE, DELETE_TOKEN, FILTER_REQUESTS, SET_REQUESTS, SET_REQUESTS_STATUS, SET_TOKEN, UPDATE_TITLE } from "@/utils";
 
 //Les proprietes de mon state(etat)
 type StateProps = {
@@ -19,12 +19,23 @@ type Props = {
   setRequests: (data: any) => void;
   updateRequestStatus: (data: any) => void;
   filterRequests: (data: any) => void;
+  setToken: (data: any) => void;
+  deleteToken: () => void;
 };
 
 //creation du context global de notre application
 export const GlobalApplicationcontext = createContext<Props>({} as Props);
 
 function GlobalApplicationcontextProvider({ children }: any) {
+
+  const setToken = (data: any) => {
+
+    dispatch({ type: SET_TOKEN, data });
+  }
+  const deleteToken = () => {
+    dispatch({ type: DELETE_TOKEN });
+  }
+
   /*pour manipuler l'etat global de notre application avec un titre par defaut
   et dire que par defaut le demandes et les declarations sont vides*
   const [state, setState] = useState<StateProps>({ title: "Titre par defaut", requests: [], declarations: [], });*/
@@ -61,7 +72,7 @@ function GlobalApplicationcontextProvider({ children }: any) {
   return (
     /*Mise a disposition du context c-a-d comme une blise et 
     recevoir en valeur le state,la methode pour modiffier le titre*/
-    <GlobalApplicationcontext.Provider value={{ state, setRequests, filterRequests, updateTitle, updateRequestStatus }}>
+    <GlobalApplicationcontext.Provider value={{ state, setRequests, filterRequests, updateTitle, updateRequestStatus, setToken, deleteToken }}>
       {children}
     </GlobalApplicationcontext.Provider>
   )
