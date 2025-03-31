@@ -26,14 +26,14 @@ function GlobalApplicationReducer(state: any = APPLICATION_STATE, action: any) {
             const updateRequests = [...requestsToKeep, { ...requestsToUpdate, status: status }];
             state = { ...state, requests: updateRequests };
             break;
-        case FILTER_REQUESTS:
-            state = { ...state, requestFilter: data };
-            break;
         case SET_TOKEN:
             state = { ...state, token: data.token };
             break;
         case DELETE_TOKEN:
             state = delete state.token;
+            break;
+        case FILTER_REQUESTS:
+            state = { ...state, requestFilter: data };
             break;
     }
     sessionStorage.setItem(APPLICATION_STATE_KEY, JSON.stringify(state));

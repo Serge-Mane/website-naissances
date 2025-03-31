@@ -1,36 +1,23 @@
-import { ApplicationContext } from "@/contexte/ApplicationContextProvider";
-import { GlobalApplicationcontext } from "@/contexte/global/GlobalApplicationContextProvider";
+import { GlobalApplicationcontext } from "@/contexte/global/GlobalApplicationcontext";
 import { search } from "@/services";
 import { Declaration } from "@/types/Declaration";
+import { useQuery } from "@tanstack/react-query";
 import { useContext, useEffect, useRef, useState } from "react";
 
 function useDeclarations() {
-    const { updateTitle } = useContext(GlobalApplicationcontext);
-    const { state, updateDeclaration, updateDeclarationStatus } = useContext(ApplicationContext)
+    const { updateTitle, state: { token } } = useContext(GlobalApplicationcontext);
+    const { data } = useQuery({
+        queryKey: ['declarations'],
+        queryFn: () => search({ path: "declarations", token }),
+        retry: 2
+    });
+
+    const { state, updateDeclaration } = useContext(GlobalApplicationcontext)
     const filterRef = useRef<any>();
     const [statusOrder, setstatusOrder] = useState(1);
     const [dateOrder, setDateOrder] = useState(1);
     const [declarations, setDeclarations] = useState<Declaration[]>(state.declarations);
     const [filteredDeclarations, setFilteredDeclarations] = useState<Declaration[]>([]);
-
-    /*
-    const toUpdate: c pour dire qu'on doit retourner toutes les declarations tel que l'id qui est ici soit
-    egal a l'id qui est dans le data.
-    toUpdate: declarations a modiffier
-    toKeep: declarations a ne pas modiffier
-    en tout on recupere les donnees a modifier et celles qu'on ne doit pas modiffier et je met a jour mon tableau avec 
-    les donnees mise a jour de notre element
-    */
-
-    /*const updateStatusWithoutContext = (data: { id: string, status: string }) => {
-        const toUpdate = declarations.filter(({ id }: Declaration) => id === data.id)[0];
-        const updated = { ...toUpdate, status: data.status };
-
-        const toKeep = declarations.filter(({ id }: Declaration) => id !== data.id);
-        setDeclarations([...toKeep, updated]);
-    };*/
-
-    const updateStatus = (data: { id: string, status: string }) => updateDeclarationStatus(data);
 
     const sortByStatus = () => {
         const sortedDeclarations = declarations.sort((itemOne: Declaration, itemTwo: Declaration) => {
@@ -78,18 +65,16 @@ function useDeclarations() {
             setFilteredDeclarations([...declarations])
         }
     }
-
-    const getDeclaration = async () => {
-        const data = await search('declarations');
+    useEffect(() => {
+        updateTitle({ "title": "Declarations" });
         setDeclarations(data);
         updateDeclaration(data);
-    }
-
-    useEffect(() => {
-        updateTitle({ title: "Declarations" });
-        getDeclaration();
-    }, []);
-    return { state, declarations, filterRef, sortByStatus, sortByDate, filteredDeclarations, filterDeclarations, updateStatus };
+        //  getDeclaration();
+    }, [data]);
+    return {
+        state, declarations, filterRef, sortByStatus, sortByDate,
+        filteredDeclarations, filterDeclarations,
+    };
 
 }
 export { useDeclarations };

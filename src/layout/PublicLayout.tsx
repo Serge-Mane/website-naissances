@@ -1,4 +1,4 @@
-import { GlobalApplicationcontext } from "@/contexte/global/GlobalApplicationContextProvider";
+import { GlobalApplicationcontext } from "@/contexte/global/GlobalApplicationcontext";
 import Banner from "@/shared/Banner";
 import { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";

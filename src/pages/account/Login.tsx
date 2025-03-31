@@ -2,9 +2,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { create } from "@/services";
-import { useContext, useState } from "react";
-import { Navigate } from "react-router-dom";
-import { GlobalApplicationcontext } from "@/contexte/global/GlobalApplicationContextProvider";
+import { useContext } from "react";
+import { GlobalApplicationcontext } from "@/contexte/global/GlobalApplicationcontext";
 import { useMutation } from "@tanstack/react-query";
 
 const REQUIRED_FIELD = "Ce champ est requis";
@@ -33,34 +32,17 @@ function Login() {
     // Mutations
     const mutation = useMutation({
         mutationFn: (credentials: Credentials) => create("sign-in", credentials),
-        onSuccess: (data: { bearer }) => {
-            // Invalidate and refetch
-            setToken({ token: bearer });
+        onSuccess: async (response: Response) => {
+            const { bearer: token } = await response.json();
+            setToken({ token })
             reset();
         },
     });
 
-    const [display, setDisplay] = useState("FORM");
     const onSubmit: SubmitHandler<Credentials> = async (credentials) => {
         mutation.mutate(credentials);
-        const response = await create("sign-in", credentials);
-        const { status } = response;
-        const { bearer } = await response.json();
-        if (status === 200) {
-            setToken({ token: bearer });
-            reset();
-            setDisplay("SUCCESS");
-        }
     };
-    if (display === "SUCCESS") {
 
-        <article className="bg-white text-center px-10 py-10">
-            <h1 className="text-3xl mb-6">
-                Vous êtes connecté
-            </h1>
-            <Navigate to={"/private/declarations"} />
-        </article>
-    }
     return (
         <div className="flex flex-col justify-between md:justify-center">
             <h1 className="p-4 font-bold text-4xl text-center md:hidden">MES NAISSANCES</h1>
@@ -77,7 +59,7 @@ function Login() {
                             {...register("email")}
                         />
                         <p className="text-red-600">
-                            {errors?.email?.message}
+                            {errors.email?.message}
                         </p>
                     </div>
                     <div className="form-field">
@@ -89,7 +71,7 @@ function Login() {
                             {...register("password")}
                         />
                         <p className="text-red-600">
-                            {errors?.password?.message}
+                            {errors.password?.message}
                         </p>
                     </div>
                     <button type="submit">Connexion</button>
@@ -99,7 +81,7 @@ function Login() {
             </div>
             <p className="p-4 text-center md:hidden">&copy; {new Date().getFullYear()} sam.tech</p>
         </div>
-    )
+    );
 }
 
 export default Login

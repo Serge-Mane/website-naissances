@@ -1,4 +1,4 @@
-import { GlobalApplicationcontext } from "@/contexte/global/GlobalApplicationContextProvider";
+import { GlobalApplicationcontext } from "@/contexte/global/GlobalApplicationcontext";
 import { search } from "@/services"
 import ActionsButton from "@/shared/ActionButton";
 import PageFilter from "@/shared/PageFilter"

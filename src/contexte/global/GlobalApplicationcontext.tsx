@@ -1,8 +1,8 @@
 import { Declaration } from "@/types/Declaration";
 import { Requests } from "@/types/Request";
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import GlobalApplicationReducer from "./GlobalApplicationReducer";
-import { APPLICATION_STATE, DELETE_TOKEN, FILTER_REQUESTS, SET_REQUESTS, SET_REQUESTS_STATUS, SET_TOKEN, UPDATE_TITLE } from "@/utils";
+import { APPLICATION_STATE, DELETE_TOKEN, FILTER_REQUESTS, SET_REQUESTS, SET_REQUESTS_STATUS, SET_TOKEN, UPDATE_DECLARARTIONS, UPDATE_TITLE } from "@/utils";
 
 //Les proprietes de mon state(etat)
 type StateProps = {
@@ -21,6 +21,7 @@ type Props = {
   filterRequests: (data: any) => void;
   setToken: (data: any) => void;
   deleteToken: () => void;
+  updateDeclaration: (data: any) => void;
 };
 
 //creation du context global de notre application
@@ -69,10 +70,18 @@ function GlobalApplicationcontextProvider({ children }: any) {
     dispatch({ type: FILTER_REQUESTS, data });
   };
 
+  const updateDeclaration = (declarations: Declaration[]) => {
+    dispatch({ type: UPDATE_DECLARARTIONS, data: declarations })
+  }
+
+  useEffect(() => {
+    dispatch({});
+  }, []);
+
   return (
     /*Mise a disposition du context c-a-d comme une blise et 
     recevoir en valeur le state,la methode pour modiffier le titre*/
-    <GlobalApplicationcontext.Provider value={{ state, setRequests, filterRequests, updateTitle, updateRequestStatus, setToken, deleteToken }}>
+    <GlobalApplicationcontext.Provider value={{ updateDeclaration, state, setRequests, filterRequests, updateTitle, updateRequestStatus, setToken, deleteToken }}>
       {children}
     </GlobalApplicationcontext.Provider>
   )
