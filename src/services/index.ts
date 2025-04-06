@@ -19,11 +19,11 @@ const search = async ({ path, token }: Params) => {
 };
 
 
-const create = async (url: string, body: any) => {
+const create = async ({ url, token, body }: any) => {
     const response = await fetch(
         `/api/${url}`,
         {
-            headers: { 'accept': 'application/json', 'content-type': 'application/json' },
+            headers: { 'accept': 'application/json', 'content-type': 'application/json', 'Authorization': `Bearer ${token}` },
             body: JSON.stringify(body),
             method: 'POST'
         }

@@ -13,6 +13,7 @@ function Declarations() {
                         btnLabel="Nouvelle declaration"
                         btnPath="/private/declarations/nouvelle-declaration"
                         inputPlaceHolder="rechercher une declaration"
+                        action={()=>null}
                     />
                 </>
             </div>
