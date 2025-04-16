@@ -1,5 +1,5 @@
 import { Requests } from "@/types/Request";
-import { APPLICATION_STATE, APPLICATION_STATE_KEY, DELETE_TOKEN, FILTER_REQUESTS, INITIAL_STATE, LOGOUT, SET_REQUESTS, SET_REQUESTS_STATUS, SET_TOKEN, UPDATE_TITLE } from "@/utils"
+import { APPLICATION_STATE, APPLICATION_STATE_KEY, DELETE_TOKEN, FILTER_REQUESTS, INITIAL_STATE, LOGOUT, SET_CURRENT_USER, SET_REQUESTS, SET_REQUESTS_STATUS, SET_TOKEN, UPDATE_TITLE } from "@/utils"
 
 
 /**
@@ -28,6 +28,10 @@ function GlobalApplicationReducer(state: any = APPLICATION_STATE, action: any) {
             break;
         case SET_TOKEN:
             state = { ...state, token: data.token };
+            break;
+        case SET_CURRENT_USER:
+            const { role } = data || {};
+            state = { ...state, user: { role } };
             break;
         case DELETE_TOKEN:
             state = delete state.token;

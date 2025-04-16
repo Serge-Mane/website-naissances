@@ -2,8 +2,11 @@ import { Declaration } from "@/types/Declaration";
 import { Requests } from "@/types/Request";
 import { createContext, useEffect, useReducer } from "react";
 import GlobalApplicationReducer from "./GlobalApplicationReducer";
-import { APPLICATION_STATE, DELETE_TOKEN, FILTER_REQUESTS, LOGOUT, SET_REQUESTS, SET_REQUESTS_STATUS, SET_TOKEN, UPDATE_DECLARARTIONS, UPDATE_TITLE } from "@/utils";
+import { APPLICATION_STATE, DELETE_TOKEN, FILTER_REQUESTS, LOGOUT, SET_CURRENT_USER, SET_REQUESTS, SET_REQUESTS_STATUS, SET_TOKEN, UPDATE_DECLARARTIONS, UPDATE_TITLE } from "@/utils";
 
+type User = {
+  role: string;
+}
 //Les proprietes de mon state(etat)
 type StateProps = {
   title: string;
@@ -11,7 +14,9 @@ type StateProps = {
   token?: string;
   requests: Requests[];
   declarations: Declaration[];
+  user?: User;
 }
+
 //Les proprietes qu'on doit definir dans notre application
 type Props = {
   state: StateProps;//l'etat global de notre application qui veut dire le state contient le StateProps
@@ -20,6 +25,7 @@ type Props = {
   updateRequestStatus: (data: any) => void;
   filterRequests: (data: any) => void;
   setToken: (data: any) => void;
+  setCurrentUser: (data: any) => void;
   deleteToken: () => void;
   updateDeclaration: (data: any) => void;
   logout: () => void;
@@ -39,6 +45,12 @@ function GlobalApplicationcontextProvider({ children }: any) {
 
     dispatch({ type: SET_TOKEN, data });
   }
+
+  const setCurrentUser = (data: any) => {
+
+    dispatch({ type: SET_CURRENT_USER, data });
+  }
+
   const deleteToken = () => {
     dispatch({ type: DELETE_TOKEN });
   }
@@ -87,7 +99,7 @@ function GlobalApplicationcontextProvider({ children }: any) {
   return (
     /*Mise a disposition du context c-a-d comme une blise et 
     recevoir en valeur le state,la methode pour modiffier le titre*/
-    <GlobalApplicationcontext.Provider value={{ logout, updateDeclaration, state, setRequests, filterRequests, updateTitle, updateRequestStatus, setToken, deleteToken }}>
+    <GlobalApplicationcontext.Provider value={{ setCurrentUser, logout, updateDeclaration, state, setRequests, filterRequests, updateTitle, updateRequestStatus, setToken, deleteToken }}>
       {children}
     </GlobalApplicationcontext.Provider>
   )

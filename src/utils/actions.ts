@@ -32,10 +32,17 @@ const getStatusLabel = (status: string) => {
         case "REJECTED":
             return "Rejeté";
 
+        case "DELETE":
+            return "Supprimé";
+
         default:
             return "";
             break;
     }
 }
-const STATUS = ["NEW", "ON-GOING", "VALIDATED", "REJECTED"];
+const STATUS = {
+    "AGENT": ["NEW", "ON-GOING", "VALIDATED", "REJECTED"],
+    "ADMINISTRATOR": ["NEW", "DELETE"],
+    "PUBLIC": ["NEW", "DELETE"],
+}
 export { getStatusColor, getStatusLabel, STATUS }
