@@ -44,8 +44,8 @@ function DeclarationsItem({ declaration: item, index, action }: Props) {
                 <span>{item.company.name}</span>
             </span>
             <span className={`p-2 col-span-2 flex flex-col text-center`}>
-                <span>{item.firstParent.firstName}</span>
-                <span className="uppercase">{item.firstParent.lastName}</span>
+                <span>{item?.firstParent?.firstName}</span>
+                <span className="uppercase">{item?.firstParent?.lastName}</span>
             </span>
             <span className={`p-2 col-span-2 flex flex-col`}>
                 <span>{item.secondParent.firstName}</span>

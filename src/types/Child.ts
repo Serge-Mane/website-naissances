@@ -4,5 +4,5 @@ export type Child = {
     firstName: string,
     lastName: string,
     birthDate: string,
-    birthTime?: string
+    birthTime: string
 }

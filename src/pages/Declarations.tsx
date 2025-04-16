@@ -1,6 +1,5 @@
 import DeclarationsItems from "@/componnents/declarations/DeclarationsItems";
 import { useDeclarations } from "@/hook";
-import Debug from "@/shared/Debug";
 import PageFilter from "@/shared/PageFilter";
 
 function Declarations() {
@@ -13,7 +12,7 @@ function Declarations() {
                         btnLabel="Nouvelle declaration"
                         btnPath="/private/declarations/nouvelle-declaration"
                         inputPlaceHolder="rechercher une declaration"
-                        action={()=>null}
+                        action={() => null}
                     />
                 </>
             </div>
@@ -25,7 +24,6 @@ function Declarations() {
                     sortByDate={sortByDate}
                 />
             </div >
-            <Debug data={declarations} />
         </>
     )
 }
