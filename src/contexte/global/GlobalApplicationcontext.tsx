@@ -2,7 +2,7 @@ import { Declaration } from "@/types/Declaration";
 import { Requests } from "@/types/Request";
 import { createContext, useEffect, useReducer } from "react";
 import GlobalApplicationReducer from "./GlobalApplicationReducer";
-import { APPLICATION_STATE, DELETE_TOKEN, FILTER_REQUESTS, SET_REQUESTS, SET_REQUESTS_STATUS, SET_TOKEN, UPDATE_DECLARARTIONS, UPDATE_TITLE } from "@/utils";
+import { APPLICATION_STATE, DELETE_TOKEN, FILTER_REQUESTS, LOGOUT, SET_REQUESTS, SET_REQUESTS_STATUS, SET_TOKEN, UPDATE_DECLARARTIONS, UPDATE_TITLE } from "@/utils";
 
 //Les proprietes de mon state(etat)
 type StateProps = {
@@ -22,12 +22,18 @@ type Props = {
   setToken: (data: any) => void;
   deleteToken: () => void;
   updateDeclaration: (data: any) => void;
+  logout: () => void;
 };
 
 //creation du context global de notre application
 export const GlobalApplicationcontext = createContext<Props>({} as Props);
 
 function GlobalApplicationcontextProvider({ children }: any) {
+
+  const logout = () => {
+
+    dispatch({ type: LOGOUT });
+  }
 
   const setToken = (data: any) => {
 
@@ -81,7 +87,7 @@ function GlobalApplicationcontextProvider({ children }: any) {
   return (
     /*Mise a disposition du context c-a-d comme une blise et 
     recevoir en valeur le state,la methode pour modiffier le titre*/
-    <GlobalApplicationcontext.Provider value={{ updateDeclaration, state, setRequests, filterRequests, updateTitle, updateRequestStatus, setToken, deleteToken }}>
+    <GlobalApplicationcontext.Provider value={{ logout, updateDeclaration, state, setRequests, filterRequests, updateTitle, updateRequestStatus, setToken, deleteToken }}>
       {children}
     </GlobalApplicationcontext.Provider>
   )
