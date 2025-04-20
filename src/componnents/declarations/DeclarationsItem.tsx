@@ -22,13 +22,24 @@ function DeclarationsItem({ declaration: item, index, action }: Props) {
 
 
     const getLastStatus = (declaration: any) => {
+        const status = declaration.statuses.sort((fItem: any, sItem: any) => {
+          const { registered: fRegistered } = fItem;
+          const { registered: sRegistered } = sItem;
+          return new Date(sRegistered).getTime() - new Date(fRegistered).getTime();
+        })[0];
+        const {
+          status: { name },
+        } = status;
+        return name;
+      };
+    /* const getLastStatus = (declaration: any) => {
         const status = declaration.statuses.sort(
             ({ registered }: { registered: Date }) => registered
         )[0];
         const { status: { name } } = status;
         return name;
     };
-
+ */
     return (
         <article className={`grid grid-cols-12 border-t border-gray-300 col-span-2 items-center ${index % 2 === 0 ? 'bg-gray-100' : null}`}>
             <span className={`p-2`}>

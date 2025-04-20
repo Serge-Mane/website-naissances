@@ -32,7 +32,7 @@ function useDeclarations() {
 
 
   const updateStatus = (data: { id: string; status: string }) => {
-    partialUpdateMutation.mutate({ path: `declarations/${data.id}/status`, data })
+    partialUpdateMutation.mutate({ path: `declarations/${data.id}/status`, data });
   };
 
   const sortByStatus = () => {

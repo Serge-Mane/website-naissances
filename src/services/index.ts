@@ -34,22 +34,23 @@ const create = async ({ url, token, body }: any) => {
     );
     return response;
 }
-/* 
-const create = async ({ url, token, body }: any) => {
-    return await axios({
-        method: 'POST',
-        url: `/api/${url}`,
-        data:
-            body,
-        headers: {
-            'accept': 'application/json',
-            'content-type': 'application/json',
-            ...(token ? { 'Authorization': `Bearer ${token}` } : null)
 
+const partialUpdate = async ({ path, token, body }: any) => {
+    const response = await axios(
+        `/api/${path}`,
+
+        {
+            headers: {
+                'accept': 'application/json', 'content-type': 'application/json',
+                ...(token ? { 'Authorization': `Bearer ${token}` } : null)
+            },
+            method: 'PATCH',
+            data: JSON.stringify(body),
         }
-    })
-} */
-
+    );
+    return response;
+}
+/* 
 const partialUpdate = async ({ path, token, body }: any) => {
     return await axios({
         method: 'PATCH',
@@ -63,6 +64,6 @@ const partialUpdate = async ({ path, token, body }: any) => {
 
         },
     })
-}
+} */
 
 export { search, create, partialUpdate };

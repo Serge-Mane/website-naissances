@@ -35,7 +35,7 @@ function DeclarationsItems(props: Props) {
                 declarations && declarations.length ? (
                     <>
                         {declarations.map((item: Declaration, index: number) => (
-                            <DeclarationsItem action={updateStatus} declaration={item} index={index} key={item.id} />
+                            <DeclarationsItem action={updateStatus} declaration={item} index={index} key={`${item.id}-${index}`} />
                         ))
                         }
                     </>
