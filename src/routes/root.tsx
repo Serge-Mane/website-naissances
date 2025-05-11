@@ -8,6 +8,8 @@ import Requests from "@/pages/requests/Requests";
 import RequestEdit from "@/pages/requests/RequestEdit";
 import PublicLayout from "@/layout/PublicLayout";
 import Login from "@/pages/account/Login";
+import Profile from "@/pages/profiles/Profile";
+import Notiffication from "@/pages/notiffications/Notiffication";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +55,14 @@ const router = createBrowserRouter([
           {
             path: "demandes/nouvelle-demande",
             element: <RequestEdit />,
+          },
+          {
+            path: "/private/profiles",
+            element: <Profile />,
+          },
+          {
+            path: "/private/notifications",
+            element: <Notiffication />,
           },
         ],
       },

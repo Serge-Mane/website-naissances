@@ -8,7 +8,7 @@ function Nav() {
 
     return (
         <nav className="z-10 bg-white shadow-md w-56 fixed flex flex-col justify-between top-0 left-0 bottom-0">
-            <Link to={"/private/declrations"} className="bg-blue-700 text-white uppercase text-center py-5 font-extrabold text-xl">
+            <Link to={"/private/declarations"} className="bg-blue-700 text-white uppercase text-center py-5 font-extrabold text-xl">
                 les nouvelles vies
             </Link>
             <ul>
