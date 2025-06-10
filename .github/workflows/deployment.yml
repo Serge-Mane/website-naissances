@@ -27,9 +27,6 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-      - name: Make mvnw executable
-        run: chmod +x mvnw
-
       - name: build project
         run: |
           npm run build
