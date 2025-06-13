@@ -67,6 +67,11 @@ jobs:
             username: ${{ secrets.SERVER_USERNAME }}
             key: ${{ secrets.SSH_PRIVATE_KEY }}
             script: |
+              echo "Vérification des secrets..."
+              echo "MAIL_HOST=${{secrets.MAIL_HOST}}"
+              echo "DATABASE_URL=${{secrets.DATABASE_URL}}"
+              echo "DATABASE_USERNAME=${{secrets.DATABASE_USERNAME}}"
+              echo "DATABASE_USERPASSWORD=${{secrets.DATABASE_USERPASSWORD}}"
               /usr/sbin/nginx -t
               /usr/sbin/service nginx restart
             
