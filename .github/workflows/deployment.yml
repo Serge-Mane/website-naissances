@@ -72,6 +72,6 @@ jobs:
               echo "DATABASE_URL=${{secrets.DATABASE_URL}}"
               echo "DATABASE_USERNAME=${{secrets.DATABASE_USERNAME}}"
               echo "DATABASE_USERPASSWORD=${{secrets.DATABASE_USERPASSWORD}}"
-              /usr/sbin/nginx -t
-              /usr/sbin/service nginx restart
+              nginx -t
+              service nginx restart
             
