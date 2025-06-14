@@ -67,5 +67,5 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            nginx -t
-            service nginx restart
+            nginx -T
+
