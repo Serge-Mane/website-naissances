@@ -68,6 +68,5 @@ jobs:
           port: ${{ secrets.SERVER_PORT }}
           script: |
             nginx -t
-            systemctl restart nginx
-            systemctl status nginx
-     
+            service nginx restart
+            certbot certonly --nginx -d website.mesnaissances.com --force-renew
