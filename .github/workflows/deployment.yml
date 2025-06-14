@@ -59,13 +59,15 @@ jobs:
           source: website-naissances.conf
           target: /etc/nginx/conf.d
           overwrite: true
-      - name: executing remote ssh commands
-        uses: appleboy/ssh-action@v1.2.0
+      - name: Exécuter commandes de déploiement sur le serveur
+        uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.SERVER_HOST }}
-          port: ${{ secrets.SERVER_PORT }}
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SERVER_PORT }}
           script: |
             nginx -t
-            service nginx restart
+            systemctl restart nginx
+            systemctl status nginx
+     
