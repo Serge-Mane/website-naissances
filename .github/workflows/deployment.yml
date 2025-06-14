@@ -67,6 +67,7 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            chmod 644 /run/nginx.pid
             export PATH=$PATH:/usr/sbin
             nginx -t
 
