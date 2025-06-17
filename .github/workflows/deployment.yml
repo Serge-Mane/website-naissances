@@ -68,8 +68,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             export PATH=$PATH:/usr/sbin:/sbin
-            nginx -t
-            service nginx restart
+            sudo nginx -t
+            sudo service nginx restart
           
          
 
