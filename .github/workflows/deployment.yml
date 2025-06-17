@@ -68,10 +68,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             export PATH=$PATH:/usr/sbin:/sbin
-            echo "PATH is: $PATH"
-            which nginx
-            which service
             nginx -t
-            service nginx start
+            service nginx restart
+          
          
 
