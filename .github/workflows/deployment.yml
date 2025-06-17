@@ -72,6 +72,6 @@ jobs:
             which nginx
             which service
             nginx -t
-            service nginx restart
+            service nginx start
          
 
