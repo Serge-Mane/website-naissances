@@ -67,6 +67,7 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+           apt install nginx
            nginx -t
            service nginx restart
 
