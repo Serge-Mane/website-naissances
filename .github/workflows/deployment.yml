@@ -1,5 +1,5 @@
     name: deploy application
-    run-name: ${{ github.actor }} is deploying project 🚀
+    run-name: ${{ github.actor }} is deploying front 🚀
     on:
        push:
        workflow_dispatch:
