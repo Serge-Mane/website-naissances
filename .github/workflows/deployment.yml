@@ -68,7 +68,5 @@
               username: ${{ secrets.SERVER_USERNAME }}
               key: ${{ secrets.SSH_PRIVATE_KEY }}
               script: |
-                export PATH=$PATH:/usr/sbin:/sbin
-                cd /opt/serge-mane
                 sudo nginx -t
                 sudo service nginx restart
