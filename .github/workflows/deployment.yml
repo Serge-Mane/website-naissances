@@ -29,6 +29,7 @@
 
           - name: build project
             run: |
+              npm install
               npm run build
 
           - name: copy file on servers
