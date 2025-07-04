@@ -1,5 +1,5 @@
     name: deploy application
-    run-name: ${{ github.actor }} is deploying front 🚀
+    run-name: ${{ github.actor }} is deploying frontent 🚀
     on:
        push:
        workflow_dispatch:
@@ -70,4 +70,3 @@
               script: |
                 sudo nginx -t
                 sudo service nginx restart
-                
