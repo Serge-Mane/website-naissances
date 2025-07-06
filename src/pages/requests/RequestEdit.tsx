@@ -57,7 +57,8 @@ function RequestEdit() {
 
     const save = async (data: schemaProperties) => {
         const response = await fetch(
-            "http://localhost:8080/requests",
+            //"http://localhost:8080/requests",
+            "http://localhost:40082/requests",
             {
                 headers: {
                     "content-type": "application/json",
