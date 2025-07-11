@@ -15,7 +15,6 @@
             uses: appleboy/ssh-action@v1
             with:
               host: ${{ secrets.SERVER_HOST }}
-              port: ${{ secrets.SERVER_PORT }}
               username: ${{ secrets.SERVER_USERNAME }}
               key: ${{ secrets.SSH_PRIVATE_KEY }}
               script: |
@@ -36,7 +35,6 @@
             uses: appleboy/scp-action@v1
             with:
               host: ${{ secrets.SERVER_HOST }}
-              port: ${{ secrets.SERVER_PORT }}
               username: ${{ secrets.SERVER_USERNAME }}
               key: ${{ secrets.SSH_PRIVATE_KEY }}
               source: dist
@@ -54,7 +52,6 @@
             uses: appleboy/scp-action@v0.1.7
             with:
               host: ${{ secrets.SERVER_HOST }}
-              port: ${{ secrets.SERVER_PORT }}
               username: ${{ secrets.SERVER_USERNAME }}
               key: ${{ secrets.SSH_PRIVATE_KEY }}
               source: sam.conf
@@ -64,7 +61,6 @@
             uses: appleboy/ssh-action@v1
             with:
               host: ${{ secrets.SERVER_HOST }}
-              port: ${{ secrets.SERVER_PORT }}
               username: ${{ secrets.SERVER_USERNAME }}
               key: ${{ secrets.SSH_PRIVATE_KEY }}
               script: |
