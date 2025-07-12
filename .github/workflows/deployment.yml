@@ -48,7 +48,7 @@
         steps:
           - name: Check out repository code
             uses: actions/checkout@v4
-          - name: copy configurations file on server
+          - name: copy configurations file on t server
             uses: appleboy/scp-action@v0.1.7
             with:
               host: ${{ secrets.SERVER_HOST }}
